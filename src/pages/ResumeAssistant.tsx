@@ -1,6 +1,4 @@
-
 import { useState, useEffect } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { toast } from "@/components/ui/use-toast";
 import Header from "@/components/Header";
 import ChatWindow from "@/components/ChatWindow";
@@ -9,9 +7,9 @@ import ChatSuggestions from "@/components/ChatSuggestions";
 import WelcomeMessage from "@/components/WelcomeMessage";
 import { MessageType } from "@/components/ChatMessage";
 
-// Generate a simple ID if uuid is not available
+// Simple ID generator that doesn't rely on external packages
 const generateId = () => {
-  return Math.random().toString(36).substring(2, 15);
+  return Date.now().toString() + Math.random().toString(36).substring(2, 9);
 };
 
 // Resume-related suggestions based on context
@@ -101,14 +99,8 @@ const ResumeAssistant = () => {
   ]);
 
   const handleSendMessage = (content: string) => {
-    // Try to use uuidv4, fall back to our simple ID generator if it fails
-    let id;
-    try {
-      id = uuidv4();
-    } catch (e) {
-      id = generateId();
-      console.error("UUID generation failed, using fallback ID generator", e);
-    }
+    // Generate a unique ID using our internal function
+    const id = generateId();
     
     const newUserMessage: MessageType = {
       id,
@@ -121,13 +113,8 @@ const ResumeAssistant = () => {
     
     // Simulate API response delay
     setTimeout(() => {
-      // Use the same ID generation approach for consistency
-      let responseId;
-      try {
-        responseId = uuidv4();
-      } catch (e) {
-        responseId = generateId();
-      }
+      // Generate a new ID for the assistant message
+      const responseId = generateId();
       
       const assistantResponse = getAssistantResponse(content);
       const newAssistantMessage: MessageType = {
