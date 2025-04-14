@@ -9,6 +9,11 @@ import ChatSuggestions from "@/components/ChatSuggestions";
 import WelcomeMessage from "@/components/WelcomeMessage";
 import { MessageType } from "@/components/ChatMessage";
 
+// Generate a simple ID if uuid is not available
+const generateId = () => {
+  return Math.random().toString(36).substring(2, 15);
+};
+
 // Resume-related suggestions based on context
 const getContextualSuggestions = (messages: MessageType[]): string[] => {
   // Get the last message to provide context-based suggestions
@@ -96,8 +101,17 @@ const ResumeAssistant = () => {
   ]);
 
   const handleSendMessage = (content: string) => {
+    // Try to use uuidv4, fall back to our simple ID generator if it fails
+    let id;
+    try {
+      id = uuidv4();
+    } catch (e) {
+      id = generateId();
+      console.error("UUID generation failed, using fallback ID generator", e);
+    }
+    
     const newUserMessage: MessageType = {
-      id: uuidv4(),
+      id,
       role: "user",
       content,
     };
@@ -107,9 +121,17 @@ const ResumeAssistant = () => {
     
     // Simulate API response delay
     setTimeout(() => {
+      // Use the same ID generation approach for consistency
+      let responseId;
+      try {
+        responseId = uuidv4();
+      } catch (e) {
+        responseId = generateId();
+      }
+      
       const assistantResponse = getAssistantResponse(content);
       const newAssistantMessage: MessageType = {
-        id: uuidv4(),
+        id: responseId,
         role: "assistant",
         content: assistantResponse,
       };
