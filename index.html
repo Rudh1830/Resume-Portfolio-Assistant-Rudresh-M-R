@@ -4,58 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <!-- Title -->
   <title>Resume & Portfolio Assistant | Rudresh M R</title>
 
-  <!-- SEO Meta -->
   <meta
     name="description"
-    content="AI-powered Resume and Portfolio Assistant to help users build, improve, and analyze professional resumes and portfolios."
+    content="AI-powered Resume & Portfolio Assistant to help students and job seekers improve their career profiles."
   />
   <meta name="author" content="Rudresh M R" />
 
-  <!-- Open Graph (LinkedIn / WhatsApp / Facebook) -->
-  <meta property="og:title" content="Resume & Portfolio Assistant" />
-  <meta
-    property="og:description"
-    content="An AI-powered assistant for resume building, portfolio guidance, and career support."
-  />
-  <meta property="og:type" content="website" />
-  <!-- OPTIONAL: add your own preview image later -->
-  <!-- <meta property="og:image" content="https://rudh1830.github.io/Resume-Portfolio-Assistant-Rudresh-M-R/preview.png" /> -->
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="Resume & Portfolio Assistant" />
-  <meta
-    name="twitter:description"
-    content="AI-powered Resume & Portfolio Assistant for students and job seekers."
-  />
-  <!-- OPTIONAL -->
-  <!-- <meta name="twitter:image" content="https://rudh1830.github.io/Resume-Portfolio-Assistant-Rudresh-M-R/preview.png" /> -->
-
-  <!-- Styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <!-- MAIN APP -->
-  <div id="app">
-    <header>
-      <h1>Resume & Portfolio Assistant</h1>
-      <p>Your smart companion for building a strong career profile</p>
-    </header>
+  <header>
+    <h1>Resume & Portfolio Assistant</h1>
+    <p>Your smart companion for building a strong career profile</p>
+  </header>
 
-    <main>
-      <!-- Your existing content goes here -->
-    </main>
+  <main>
+    <section class="input-section">
+      <h2>Paste Your Resume</h2>
+      <textarea
+        id="resumeText"
+        placeholder="Paste your resume content here..."
+      ></textarea>
+      <button onclick="analyzeResume()">Analyze Resume</button>
+    </section>
 
-    <footer>
-      <p>© 2026 Rudresh M R. All rights reserved.</p>
-    </footer>
-  </div>
+    <section class="output-section">
+      <h2>Suggestions</h2>
+      <div id="output">
+        <p>Your resume analysis will appear here.</p>
+      </div>
+    </section>
+  </main>
 
-  <!-- Scripts -->
+  <footer>
+    <p>© 2026 Rudresh M R. All rights reserved.</p>
+  </footer>
+
   <script src="script.js"></script>
 </body>
 </html>
